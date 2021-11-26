@@ -1,0 +1,20 @@
+body {
+	margin: 0;
+}
+
+#container {
+  position: relative;
+  overflow: hidden;
+}
+#container #three, #info {
+  position: absolute;
+}
+canvas {
+  display: block;
+  overflow: hidden;
+}
+
+#info {
+	padding: 10px;
+	font-family: 'Roboto Condensed', sans-serif;
+}

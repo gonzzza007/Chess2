@@ -333,7 +333,6 @@ const exploreFog = { x: 4.0, y: 13.0 };
 const exploreOpacity = { x: 1.0 };
 
 
-
 function flyExplore() {
     	
 	exploreView = !exploreView;
@@ -520,12 +519,12 @@ window.scene = scene;
 /***************************************
 *               RENDERER               *
 ***************************************/
-//const renderer = new THREE.WebGLRenderer({antialias: (dbg?false:true), alpha: (dbg?false:true)} );
-const renderer = new THREE.WebGLRenderer({antialias: (dbg?false:true), alpha: true} );
+const renderer = new THREE.WebGLRenderer({antialias: (dbg ? false : true), alpha: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(dbg?(window.devicePixelRatio/4):window.devicePixelRatio);
-document.body.appendChild(renderer.domElement);
+renderer.setPixelRatio(dbg ? (window.devicePixelRatio/4) : window.devicePixelRatio);
 
+var container = document.getElementById('container');
+container.appendChild(renderer.domElement);
 
 
 /***************************************
@@ -534,7 +533,7 @@ document.body.appendChild(renderer.domElement);
 const fov = 45;
 const aspect = window.innerWidth / window.innerHeight;
 const near = 0.01;
-const far = (dbg?1000:200);
+const far = (dbg ? 1000 : 200);
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 camera.focus = 10;
@@ -593,11 +592,11 @@ gameCubes.forEach(function(item, index){
 	let currentCube = makeInstance(geometry, (item.playable ? materialBlue : materialBortik), item.xPos, item.zPos, item.name);
 
 	// first level and prev/next boxes have  texture0 enabled by default
-	loadSvg(item.texture0, currentCube, 'texture0', ((item.level==1)||(item.level==0))?true:false);
+	loadSvg(item.texture0, currentCube, 'texture0', ((item.level==1)||(item.level==0)) ? true : false);
 
 	if (item.playable) {
 		loadSvg(item.texture1, currentCube, 'texture1', false);
-		loadSvg(item.texture2, currentCube, 'texture2', (item.level>1)?true:false);
+		loadSvg(item.texture2, currentCube, 'texture2', (item.level>1) ? true : false);
 	}
 
 	currentCube.playable = item.playable;
