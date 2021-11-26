@@ -381,7 +381,6 @@ function flyExplore() {
 	            .easing(TWEEN.Easing.Cubic.InOut)
 	            .onUpdate(() => {
 	            	materialBortik.opacity = exploreOpacity;
-	            	console.log(exploreOpacity);
 	        	})
 	            .onComplete(() => {
 	            	//
@@ -427,7 +426,6 @@ function flyExplore() {
 	            .easing(TWEEN.Easing.Cubic.InOut)
 	            .onUpdate(() => {
 	            	materialBortik.opacity = exploreOpacity;
-	            	console.log(exploreOpacity);
 	        	})
 	            .onComplete(() => {
 	            	//
@@ -470,7 +468,7 @@ function click(x, y) {
 		}
 
 		let theBox = intersects[closest].object;
-		//console.log('intersect: ' + intersects[closest].object.name + (intersects[closest].object.playable ? ' [playable]' : ''));
+		if (dbg) console.log('intersect: ' + intersects[closest].object.name + (intersects[closest].object.playable ? ' [playable]' : ''));
 
 		// round level by 4
 		const rounded4 = lookLevel - (lookLevel-1)%4;
