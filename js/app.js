@@ -372,12 +372,11 @@ function flyExplore() {
 	        	})
 	           .start();
 
-	        
 	        materialBortik.tween = new TWEEN.Tween(exploreOpacity)
 	            .to({ x: 0.0}, 4000)
 	            .easing(TWEEN.Easing.Cubic.InOut)
 	            .onUpdate(() => {
-	            	materialBortik.opacity = exploreOpacity;
+	            	materialBortik.opacity = exploreOpacity.x;
 	        	})
 	            .onComplete(() => {
 	            	//
@@ -421,7 +420,7 @@ function flyExplore() {
 	            .to({ x: 1.0}, 4000)
 	            .easing(TWEEN.Easing.Cubic.InOut)
 	            .onUpdate(() => {
-	            	materialBortik.opacity = exploreOpacity;
+	            	materialBortik.opacity = exploreOpacity.x;
 	        	})
 	            .onComplete(() => {
 	            	//
