@@ -101,7 +101,6 @@ const gameCubes = [
 
 
 	{	level:  0,	playable: false,  	name: "cubemap",	xPos:  30,	zPos:  -16,	texture0: "worldmap.svg"},
-
 ];
 
 
@@ -297,11 +296,6 @@ function loadSvg(fileName, object, textureName, visible = false) {
 				group.translateZ(-0.5005);
 			}
 			group.visible = visible;
-
-			
-
-
-
 			//group is loaded, ad it to the object...
 			object.add(group);
 		},
@@ -318,14 +312,11 @@ function loadSvg(fileName, object, textureName, visible = false) {
 
 
 function render(time) {	
-	
 	//delta += clock.getDelta();
-		
 	//if (delta  > interval) {
 		renderer.render(scene, camera);
 		TWEEN.update(time);
 	//}
-	
 	requestAnimationFrame(render);
 
 }
@@ -443,7 +434,6 @@ function flyExplore() {
 	        	})
 		        .start();
 	    }
-
 	}
 }
 
@@ -596,6 +586,7 @@ const materialBlue = new THREE.MeshBasicMaterial({color: 0x105CFB});
 ************************************************************************/
 const geometry = new THREE.BoxBufferGeometry(1);
 
+
 // create white cubes...               
 if (!dbg) {
 	for (let i = -10; i < 45; i++) {
@@ -604,32 +595,6 @@ if (!dbg) {
 		}
 	}
 }
-
-
-
-
-var count = 10000;
-var mesh = new THREE.InstancedMesh( geometry, materialBlue, count );
-var dummy = new THREE.Object3D();
-
-for ( var ii = 0; ii < count; ii ++ ) {
-	dummy.position.set(
-		Math.random() * 20 - 10,
-		Math.random() * 20 - 10,
-		Math.random() * 20 - 10
-	);
-	dummy.rotation.set(
-		Math.random() * Math.PI,
-		Math.random() * Math.PI,
-		Math.random() * Math.PI
-	);
-	dummy.updateMatrix();
-	mesh.setMatrixAt( ii, dummy.matrix );
-}
-mesh.instanceMatrix.needsUpdate = true;
-scene.add( mesh );
-
-
 
 gameCubes.forEach(function(item, index){
 	// delete white cube if it's here
