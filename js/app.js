@@ -267,7 +267,8 @@ function loadSvg(fileName, object, textureName, visible = false) {
 				const material = new THREE.MeshBasicMaterial( {
 					color: path.color,
 					side: THREE.DoubleSide,
-					depthWrite: false
+					depthWrite: fileName == "worldmap.svg" ? true : false,
+					transparent: fileName == "worldmap.svg" ? false : true,
 				} );
 
 				const shapes = path.toShapes( true );
@@ -553,21 +554,12 @@ camera.shift = boxVec.sub(camera.position);
 /***************************************
 *              MATERIALS               *
 ***************************************/
-// const materialBortik = new THREE.MeshBasicMaterial({color: 0xFFFFFF});
-
 const materialBortik = new THREE.MeshBasicMaterial({
 	color: 0xFFFFFF,
 	map: new THREE.TextureLoader().load('img/bortik.png'),
+	transparent: true,
+	opacity: 1.0,
 });
-
-//materialBortik.transparent = true;
-//materialBortik.opacity = 1;
-// materialBortik.alphaTest  !!!!
-
-
-// materialBortik.flatShading = true;
-// materialBortik.map.minFilter = THREE.LinearMipmapLinearFilter;
-
 
 const materialBlue = new THREE.MeshBasicMaterial({color: 0x105CFB});
 
