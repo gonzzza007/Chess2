@@ -468,8 +468,8 @@ function click(x, y) {
 		const rounded4 = lookLevel - (lookLevel-1)%4;
 
 		if (theBox.playable) {
-			// current level is updated by playing the game and in debug mode...
-			if (dbg) {
+			// current level is updated just by clicking
+			if (true/*dbg*/) {
 				currentLevel = intersects[closest].object.level;
 			}
 			lookLevel = intersects[closest].object.level;
