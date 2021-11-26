@@ -254,9 +254,8 @@ function updateLevels() {
 	});
 }
 
-
+// custom svg loader to handle different texture transparency and depth test
 function loadSvg(fileName, object, textureName, visible = false) {
-
 	let svg = new THREE.SVGLoader();
 	let group = new THREE.Group();
 	svg.load(
@@ -334,8 +333,6 @@ const exploreOpacity = { x: 1.0 };
 
 
 
-
-
 function flyExplore() {
     	
 	exploreView = !exploreView;
@@ -393,7 +390,6 @@ function flyExplore() {
 	// go back to boxes
 	//*******************************************
 	} else {
-
 		camera.tween2 = new TWEEN.Tween(camera.rotation)
 			        .to(lastCameraRot, 6000) //  1 second
 			        .easing(TWEEN.Easing.Quadratic.In)
@@ -442,13 +438,12 @@ function click(x, y) {
 	
 	if (exploreView) return;
 
-	mouse.x = ( x / renderer.domElement.clientWidth ) * 2 - 1; //??
-	mouse.y = - ( y / renderer.domElement.clientHeight ) * 2 + 1; //??
+	mouse.x = ( x / renderer.domElement.clientWidth ) * 2 - 1;
+	mouse.y = - ( y / renderer.domElement.clientHeight ) * 2 + 1;
 	
 	// calculate objects intersecting the picking ray var intersects =     
 	raycaster.setFromCamera(mouse, camera); 
-	var intersects = raycaster.intersectObjects(scene.children); 
-
+	const intersects = raycaster.intersectObjects(scene.children); 
 
 
 	// did we click any of the boxes?
@@ -549,7 +544,9 @@ camera.filmOffset = 0;
 camera.position.set(-5.1,3.974,-5.3);
 const zeroVec = new THREE.Vector3(-1.0,0.5,-2.0);
 camera.lookAt(zeroVec);
-const boxVec = new THREE.Vector3(-2.0,0.0,-3.0); // the position of level 1 box
+
+// the position of level 1 box
+const boxVec = new THREE.Vector3(-2.0,0.0,-3.0); 
 camera.shift = boxVec.sub(camera.position);
 
 
@@ -631,27 +628,32 @@ gameCubes.forEach(function(item, index){
 ***********************************************/
 window.addEventListener('mousedown', function (event) { click(event.clientX, event.clientY); });
 window.addEventListener('touchstart', function (event) { click(event.changedTouches[0].pageX, event.changedTouches[0].pageY); });
-window.addEventListener('keydown', function (event) { 
-    
 
-	if (event.keyCode == '37') { // left arrow
+window.addEventListener('keydown', function (event) {     
+	// left arrow
+	if (event.keyCode == '37') { 
        if (lookLevel > 1)
        		lookLevel = lookLevel - 1;
        updateLevels();
     
-    } else if (event.keyCode == '39') {  // right arrow
+    // right arrow
+    } else if (event.keyCode == '39') {  
        if (lookLevel < maxLevel)
        		lookLevel = lookLevel + 1;
        	updateLevels();
 
-    } else if (event.keyCode == 0 || event.keyCode == 32) { // space
+    // space
+    } else if (event.keyCode == 0 || event.keyCode == 32) { 
        flyExplore();
     }
 	return false;
 });
+
+// TODO: slight camera rotation with mouse
 window.addEventListener('mousemove', function (event) {					
-	// TODO: slight camera rotation 
 });
+
+// update camera matrix on window resize
 window.addEventListener( 'resize', function () {
 	if (camera) {
 		camera.aspect = window.innerWidth / window.innerHeight;
